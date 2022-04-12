@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes'
 
 import NavigationBar from 'react-native-navbar-color'
 import * as Animatable from 'react-native-animatable'

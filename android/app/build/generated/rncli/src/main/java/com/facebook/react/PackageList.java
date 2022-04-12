@@ -11,6 +11,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+// @react-native-picker/picker
+import com.reactnativecommunity.picker.RNCPickerPackage;
 // expo
 import expo.modules.ExpoModulesPackage;
 // react-native-navbar-color
@@ -62,6 +64,7 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
+      new RNCPickerPackage(),
       new ExpoModulesPackage(),
       new RNNavBarColor(),
       new SvgPackage()
