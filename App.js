@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, StatusBar } from 'react-native';
 import Films from './Films';
 import Login from './Login';
+import Series from './Series'
+
+import {getNavbarBottomSize, getScreenHeight} from './screenSize';
 
 export class App extends Component {
   constructor(props) {
@@ -29,7 +32,13 @@ export class App extends Component {
         }
 
         {this.state.route == "movies" ?
-          <Films/>
+          <Films route={this.state.route} setRoute={this.route}/>
+        : 
+          null
+        }
+
+        {this.state.route == "shows" ?
+          <Series route={this.state.route} setRoute={this.route}/>
         : 
           null
         }
@@ -40,9 +49,10 @@ export class App extends Component {
 
 const styles = StyleSheet.create({
   body: {
-    display: 'flex',
-    alignItems: 'center',
-    flex: 1
+    backgroundColor: '#fff',
+    height: getScreenHeight()-getNavbarBottomSize(),
+    display:'flex',
+    alignItems:'center'
   },
 });
 

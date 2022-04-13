@@ -10,6 +10,7 @@ MERGED from [com.facebook.flipper:flipper-network-plugin:0.54.0] /home/pcdev/.gr
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.54.0] /home/pcdev/.gradle/caches/transforms-3/0c5fa7a533a8c16e801c790ed3f5602a/transformed/jetified-flipper-fresco-plugin-0.54.0/AndroidManifest.xml:8:1-15:12
 MERGED from [:react-native-picker_picker] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/@react-native-picker/picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:expo] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/expo/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-extra-dimensions-android] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-extra-dimensions-android/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-navbar-color] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-navbar-color/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-svg] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-svg/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:expo-application] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/expo-application/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
@@ -240,6 +241,8 @@ MERGED from [:react-native-picker_picker] /home/pcdev/Bureau/Luca/MoviesMobil/no
 MERGED from [:react-native-picker_picker] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/@react-native-picker/picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:expo] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/expo/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:expo] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/expo/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-extra-dimensions-android] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-extra-dimensions-android/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-extra-dimensions-android] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-extra-dimensions-android/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-navbar-color] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-navbar-color/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-navbar-color] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-navbar-color/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-svg] /home/pcdev/Bureau/Luca/MoviesMobil/node_modules/react-native-svg/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41

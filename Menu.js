@@ -42,23 +42,33 @@ export default class Menu extends Component {
     let menuBurger;
     if(this.state.menuBurger){
       menuBurger = 
-          <Animatable.View style={styles.menuBox} animation={this.state.animation} duration={500} useNativeDriver>
-              <View style={styles.headerBurgerMenu}>
-                <Text style={styles.menuTxtHeader}>Menu</Text>
-                <TouchableOpacity onPress={this.displayBurgerMenu} style={styles.burgerOpen}>
-                  <FontAwesomeIcon style={{color:"#aa67eb",padding:15}} icon={faXmark}/>
-                </TouchableOpacity>
-              </View>
+        <Animatable.View style={styles.menuBox}  animation={this.state.animation} duration={500} useNativeDriver>
+            <View style={styles.headerBurgerMenu}>
+              <Text style={styles.menuTxtHeader}>Menu</Text>
+              <TouchableOpacity onPress={this.displayBurgerMenu} style={styles.burgerOpen}>
+                <FontAwesomeIcon style={{color:"#aa67eb",padding:15}} icon={faXmark}/>
+              </TouchableOpacity>
+            </View>
 
-              <Text style={styles.menuTxtSelected}>Films</Text>
-              <Text style={styles.menuTxt}>Séries</Text>
-              <Text style={styles.menuTxt}>Acteurs</Text>
+            <View style={styles.burgerMainMenu}>
+              <TouchableOpacity onPress={() => this.props.setRoute('movies')}>
+                <Text style={this.props.route == 'movies' ? styles.menuTxtSelected : styles.menuTxt}>Films</Text>
+              </TouchableOpacity>
 
-              <View style={styles.footerBurgerMenu}>
-                <Text style={styles.footerTxt}>Movies®</Text>
-                <Text style={styles.footerVers}>V 1.0.0</Text>
-              </View>
-          </Animatable.View>
+              <TouchableOpacity onPress={() => this.props.setRoute('shows')}>
+                <Text style={this.props.route == 'shows' ? styles.menuTxtSelected : styles.menuTxt}>Séries</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => this.props.setRoute('actors')}>
+                <Text style={this.props.route == 'actors' ? styles.menuTxtSelected : styles.menuTxt}>Acteurs</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.footerBurgerMenu}>
+              <Text style={styles.footerTxt}>Movies®</Text>
+              <Text style={styles.footerVers}>V 1.0.0</Text>
+            </View>
+        </Animatable.View>
     }
     return (
       <>
@@ -84,13 +94,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     marginTop: 20,
-    position: 'relative',
-    zIndex: 10,
   },
   logo: {
     fontFamily: "Staatliches-Regular",
     fontSize: 35,
     color: "#aa67eb",
+  },
+  burgerMainMenu:{
+    display:'flex',
+    flexDirection:'column',
+    alignItems:'flex-end',
+    justifyContent:'space-between',
+    width: '100%',
+    position:'relative',
+    zIndex: 200,
   },
   burger: {
     backgroundColor: "#ededed",
@@ -140,12 +157,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: 220,
     display: 'flex',
-    alignItems: 'flex-end',
     paddingRight: 10,
     paddingLeft: 20,
     borderTopStartRadius: 20,
     borderBottomStartRadius: 20,
-    zIndex:10,
+    zIndex:100,
 
     shadowColor: "#000",
     shadowOffset: {

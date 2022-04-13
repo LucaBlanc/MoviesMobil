@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import com.reactnativecommunity.picker.RNCPickerPackage;
 // expo
 import expo.modules.ExpoModulesPackage;
+// react-native-extra-dimensions-android
+import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 // react-native-navbar-color
 import com.bhavan.RNNavBarColor.RNNavBarColor;
 // react-native-svg
@@ -66,6 +68,7 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new RNCPickerPackage(),
       new ExpoModulesPackage(),
+      new ExtraDimensionsPackage(),
       new RNNavBarColor(),
       new SvgPackage()
     ));
