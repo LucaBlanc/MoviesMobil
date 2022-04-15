@@ -1,12 +1,12 @@
-import { Text, StyleSheet, View, Image } from 'react-native'
+import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import testimg from './assets/Images/testimg.jpg'
 
 export default class Card extends Component {
   render() {
     return (
-      <View style={styles.cardBox}>
-        <Image style={{width: 280,height:420,borderRadius:15}} source={testimg}/>
+      <TouchableOpacity onPress={() => this.props.inforRoute('movie', 1)} activeOpacity={0.8} style={styles.cardBox}>
+        <Image style={{width: 280,height:420,borderTopRightRadius:15,borderTopLeftRadius:15}} source={testimg}/>
         <Text style={styles.txtDateCard}>13 dec. 2021</Text>
         <View style={styles.cardInfosBox}>
             <View style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
@@ -17,7 +17,7 @@ export default class Card extends Component {
                 <Text style={{fontFamily:'Staatliches-Regular',fontSize:25,color:'#fff'}}>85%</Text>
             </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
@@ -25,7 +25,8 @@ export default class Card extends Component {
 const styles = StyleSheet.create({
     cardBox:{
         backgroundColor:'#efefef',
-        padding: 10,
+        padding: 0,
+        paddingBottom: 15,
         borderRadius: 20,
         borderWidth: 1,
         borderColor:'#dddddd',

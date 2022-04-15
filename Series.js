@@ -9,6 +9,7 @@ import { faCaretDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icon
 //import { FlatList } from 'react-native-bidirectional-infinite-scroll'
 
 import RNPickerSelect from 'react-native-picker-select';
+import Recherche from './Recherche'
 
 export default class Series extends Component {
   render() {
@@ -16,65 +17,9 @@ export default class Series extends Component {
       <>
         <Menu route={this.props.route} setRoute={this.props.setRoute}/>
         <ScrollView style={{width:'100%',marginTop:10}}>
-        <View style={{display: 'flex',alignItems: 'center',marginTop: 20,marginBottom: 30}}>
-          <Text style={{fontSize:35, fontFamily:"Staatliches-Regular"}}>Séries</Text>
-          <View style={styles.bandeHeader}></View>
-        </View>
-        <View style={styles.filterBox}>
-          <View style={styles.picker}>
-              <RNPickerSelect
-                  style={{
-                    inputAndroid:{
-                      color: '#666',
-                      fontFamily: 'Staatliches-Regular',
-                    },
-                    placeholder:{
-                      color: '#000',
-                      fontSize: 20,
-                    }
-                  }}
-                  placeholder={{
-                    label: 'Genre',
-                    value: '10',
-                    color: '#666',
-                  }}
-                  selectedValue={null}
-                  fixAndroidTouchableBug={true}
-                  useNativeAndroidPickerStyle={false}
-                  onValueChange={(itemValue, itemIndex) =>
-                    this.setSelectedTypeContact(itemValue)}
-                  items={[
-                    { label: 'Messagerie', value: 'voicemail', color: (Platform.OS === 'ios') ? '#fff' : '#000' },
-                    { label: 'Utilisateur', value: 'user', color: (Platform.OS === 'ios') ? '#fff' : '#000' },
-                    { label: 'File d\'attente', value: 'queue', color: (Platform.OS === 'ios') ? '#fff' : '#000' },
-                    { label: 'Numéro libre', value: 'number', color: (Platform.OS === 'ios') ? '#fff' : '#000' },
-                  ]}
-              />
-              <FontAwesomeIcon style={{color:"#aa67eb",padding:10,marginLeft:5}} icon={faCaretDown}/>
-          </View>
-          <View style={styles.defBox}>
-            <Text style={styles.defTxtActive}>tout</Text>
-            <Text style={styles.defTxt}>hd</Text>
-            <Text style={styles.defTxt}>4K</Text>
-          </View>
-        </View>
-        <View style={styles.searchBox}>
-          <View style={styles.searchInputBox}>
-            <TextInput style={styles.searchInput} placeholder='Rechercher'/>
-            <TouchableOpacity style={styles.searchBtn}>
-              <FontAwesomeIcon style={{color:"#aa67eb",padding:10,}} icon={faMagnifyingGlass}/>
-            </TouchableOpacity>
-          </View>
-        </View>
-          {/* <FlatList
-            data={numbers}
-            renderItem={ListItem}
-            keyExtractor={(item) => item.toString()}
-            onStartReached={onStartReached}
-            onEndReached={onEndReached}
-          > */}
+          <Recherche title="Séries"/>
           <View style={{display:'flex',alignItems:'center'}}>
-            <Card/>
+            <Card inforRoute={this.props.infoRoute}/>
           </View>
         </ScrollView>
       </>
