@@ -6,7 +6,11 @@ export function getNavbarBottomSize() {
 }
 
 export function getScreenHeight() {
-  return ExtraDimensions.getRealWindowHeight();
+  if(Platform.OS === 'ios'){
+    return Dimensions.get('window').height
+  }else{
+    return ExtraDimensions.getRealWindowHeight() 
+  }
 }
 
 export function getScreenWidth() {

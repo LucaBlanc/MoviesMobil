@@ -11,17 +11,16 @@ export default class Recherche extends Component {
         return (
         <>
             <View style={{display: 'flex',alignItems: 'center',marginTop: 20,marginBottom: 30}}>
-                <Text style={{fontSize:35, fontFamily:"Staatliches-Regular"}}>{this.props.title}</Text>
+                <Text style={{fontSize:35,}}>{this.props.title}</Text>
                 <View style={styles.bandeHeader}></View>
             </View>
-            {this.props.title != 'Acteurs' ?
+            {/* {this.props.title != 'Acteurs' ?
             <View style={styles.filterBox}>
                 <View style={styles.picker}>
                     <RNPickerSelect
                         style={{
                             inputAndroid:{
                             color: '#666',
-                            fontFamily: 'Staatliches-Regular',
                             },
                             placeholder:{
                             color: '#000',
@@ -64,7 +63,7 @@ export default class Recherche extends Component {
                         <FontAwesomeIcon style={{color:"#aa67eb",padding:10,}} icon={faMagnifyingGlass}/>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </View> */}
         </>
         )
     }
@@ -105,13 +104,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     defTxt: {
-        fontFamily: 'Staatliches-Regular',
         fontSize: 20,
         marginHorizontal: 3,
         paddingHorizontal: 3,
     },
     defTxtActive: {
-        fontFamily: 'Staatliches-Regular',
         fontSize: 20,
         marginHorizontal: 3,
         paddingHorizontal: 8,
@@ -142,7 +139,6 @@ const styles = StyleSheet.create({
     },
     searchInput: {
         backgroundColor: '#fff',
-        fontFamily: 'Staatliches-Regular',
         fontSize: 22,
         width: 220,
         position: 'relative',

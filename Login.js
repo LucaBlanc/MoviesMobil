@@ -14,11 +14,11 @@ export default class Login extends Component {
         <>
           <Text style={styles.logo}>Movies</Text>
 
-          <TextInput style={styles.input} placeholder="Login"/>
-          <TextInput style={styles.input} placeholder="Mot de passe"/>
+          <TextInput style={styles.input} placeholder="l.blanc@sciencesu-lyon.fr" placeholderTextColor="#aa67eb"/>
+          <TextInput style={styles.input} placeholder="************" placeholderTextColor="#aa67eb"/>
 
           <TouchableOpacity onPress={() => this.props.route('movies')} style={styles.loginBtn}>
-            <Text style={{color: '#fff',fontSize: 30,fontFamily: "Staatliches-Regular",}}>Connexion</Text>
+            <Text style={{color: '#fff',fontSize: 30}}>Connexion</Text>
           </TouchableOpacity>
         </>
     )
@@ -27,7 +27,6 @@ export default class Login extends Component {
 
 const styles = StyleSheet.create({
     logo: {
-        fontFamily: "Staatliches-Regular",
         fontSize: 60,
         color: "#aa67eb",
         marginTop: 50,
@@ -35,21 +34,20 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor:"#eeeeee",
-        width: 250,
+        width: 300,
         borderRadius: 50,
-        fontSize: 25,
+        fontSize: 22,
         marginTop: 40,
         paddingHorizontal: 20,
         paddingVertical: 8,
         textAlign: 'center',
         color: '#aa67eb',
         textDecorationLine: 'none',
-        fontFamily: "Staatliches-Regular",
     },
     loginBtn:{
         backgroundColor:"#a55eea",
         paddingHorizontal: 50,
-        paddingVertical: 5,
+        paddingVertical: 10,
         borderRadius: 50,
         position: 'absolute',
         bottom: 50,

@@ -12,14 +12,43 @@ import RNPickerSelect from 'react-native-picker-select';
 import Recherche from './Recherche'
 
 export default class Series extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+      results: [],
+    }
+  }
+
+  componentDidMount(){
+    fetch('https://cburdeyron.com/api/popular-shows/', {
+        method: "GET",
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Token 50769535b75136734a5c3a8cc790d25c571bdb9a',
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({results: data.results})
+      })
+      .catch(error => console.log("Error is : ", error))
+  }
   render() {
+    console.log(this.state.results)
     return (
       <>
         <Menu route={this.props.route} setRoute={this.props.setRoute}/>
         <ScrollView style={{width:'100%',marginTop:10}}>
           <Recherche title="Séries"/>
           <View style={{display:'flex',alignItems:'center'}}>
-            <Card inforRoute={this.props.infoRoute}/>
+            {
+              this.state.results.map((result) => {
+                return(<Card inforRoute={this.props.infoRoute} title={result.name} imgurl={result.poster_path} date={result.first_air_date} note={result.vote_average} id={result.id}/>)
+              })
+            }
+          
           </View>
         </ScrollView>
       </>
@@ -62,13 +91,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   defTxt:{
-    fontFamily:'Staatliches-Regular',
+    
     fontSize: 20,
     marginHorizontal: 3,
     paddingHorizontal: 3,
   },  
   defTxtActive:{
-    fontFamily:'Staatliches-Regular',
+    
     fontSize: 20,
     marginHorizontal: 3,
     paddingHorizontal: 8,
@@ -99,7 +128,7 @@ const styles = StyleSheet.create({
   },
   searchInput:{
     backgroundColor:'#fff',
-    fontFamily:'Staatliches-Regular',
+    
     fontSize:22,
     width: 220,
   },

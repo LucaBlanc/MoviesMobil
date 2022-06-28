@@ -12,38 +12,68 @@ import DistribCard from './DistribCard'
 import MoviesCard from './MoviesCard'
 
 export default class Detail extends Component {
+    constructor(props) {
+        super(props)
+      
+        this.state = {
+          result: {},
+          dateTab: []
+        }
+    }
+
+    componentDidMount(){
+        fetch('https://cburdeyron.com/api/'+this.props.type+'/'+this.props.id+'/', {
+            method: "GET",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Token 50769535b75136734a5c3a8cc790d25c571bdb9a',
+            }
+          })
+          .then(resp => resp.json())
+          .then(data => {
+            if(this.props.type != 'actor'){
+                let date = this.props.type == 'movie' ? data.release_date : data.first_air_date
+                let dateTab = date.split('-')
+                this.setState({result: data, dateTab})
+            }else{
+                this.setState({result: data})
+            }
+                
+          })
+          .catch(error => console.log("Error is : ", error))
+    }
   render() {
+    const posterUrl = 'https://image.tmdb.org/t/p/w500'+this.state.result.poster_path
+    const banUrl = 'https://image.tmdb.org/t/p/w500'+this.state.result.backdrop_path
+    const profilUrl = 'https://image.tmdb.org/t/p/w500'+this.state.result.profile_path
     return (
     <>
         <Menu route={this.props.route} setRoute={this.props.setRoute}/>
         <ScrollView style={{marginTop: 20,display:'flex',width:'100%'}}>
             {this.props.type != "actor" ?
             <>
-                <ImageBackground source={testban} resizeMode="cover" style={styles.banAffiche}>
-                    <View style={{backgroundColor:'#00000060',width:160,display:'flex',alignItems:'center',flexDirection:'row'}}>
-                        <Image source={testimg} style={styles.afficheImg}/>
+                <ImageBackground source={{uri: banUrl}} resizeMode="cover" style={styles.banAffiche}>
+                    <View style={{backgroundColor:'#00000090',width:160,display:'flex',alignItems:'center',flexDirection:'row'}}>
+                        <Image source={{uri: posterUrl}} style={styles.afficheImg}/>
                         <View style={styles.noteBox}>
-                            <Text style={{fontFamily:'Staatliches-Regular',fontSize:18,color:'#fff'}}>85%</Text>
+                            <Text style={{fontSize:18,color:'#fff'}}>{this.state.result.vote_average*10}%</Text>
                         </View>
                     </View>
                 </ImageBackground>
-                <Text style={styles.headerTxtDetail}>Lucifer (2016)</Text>
+                <Text style={styles.headerTxtDetail}>{ this.props.type == 'movie' ? this.state.result.title +' ('+this.state.dateTab[0]+')' : this.state.result.name +' ('+this.state.dateTab[0]+')'}</Text>
                 <Text style={styles.introTxtDetail}>
-                    Lassé d’être le Seigneur des Enfers, 
-                    le diable s’installe à Los Angeles où il ouvre un 
-                    nightclub et se lie avec une policière de la brigade 
-                    criminelle...
+                    {this.state.result.overview}
                 </Text>
                 <View style={{display:'flex',flexDirection:'row'}}>
                     {this.props.type == 'show' ?
                         <>
-                            <Text style={styles.creaTxtDetail}>Création: <Text style={{color:'#000'}}>Tom Kapinos</Text></Text>
-                            <Text style={styles.creaTxtDetail}>Saisons: <Text style={{color:'#000'}}>6</Text></Text>
+                            <Text style={styles.creaTxtDetail}>Saisons: <Text style={{color:'#000'}}>{this.state.result.number_of_seasons}</Text></Text>
                         </>
                     :
                         <>
-                            <Text style={styles.creaTxtDetail}>Réalisation: <Text style={{color:'#000'}}>Tom Kapinos</Text></Text>
-                            <Text style={styles.creaTxtDetail}>Durée: <Text style={{color:'#000'}}>1h36</Text></Text>
+                            <Text style={styles.creaTxtDetail}>Budget: <Text style={{color:'#000'}}>{this.state.result.budget+' $'}</Text></Text>
+                            <Text style={styles.creaTxtDetail}>Durée: <Text style={{color:'#000'}}>{Math.trunc(this.state.result.runtime/60)+'h '+this.state.result.runtime % 60+'min'}</Text></Text>
                         </>
                     }
                 </View>
@@ -51,24 +81,22 @@ export default class Detail extends Component {
                     <Text style={styles.genreDetail}>Crime</Text>
                     <Text style={styles.genreDetail}>Science-Fiction & Fantastique</Text>
                 </View>
-                <View style={styles.distribDetail}>
-                    <Text style={{fontSize: 23,fontFamily: "Staatliches-Regular",color:'#fff',marginLeft:20,marginTop:20}}>Distribution des rôles</Text>
+                {/* <View style={styles.distribDetail}>
+                    <Text style={{fontSize: 23,color:'#fff',marginLeft:20,marginTop:20}}>Distribution des rôles</Text>
                     <DistribCard/>
-                </View>
+                </View> */}
             </>
             :
             <>
-                <Image style={styles.acteurImg} source={testactorBig}/>
-                <Text style={styles.headerTxtDetail}>Tom ellis</Text>
+                <Image style={styles.acteurImg} source={{uri: profilUrl}}/>
+                <Text style={styles.headerTxtDetail}>{this.state.result.name}</Text>
                 <Text style={styles.introTxtDetail}>
-                    Tom Ellis is a Welsh actor, best known for playing Dr. Oliver Cousins in the BBC soap opera "EastEnders" and Detective Sergeant Sam Speed in a "Life on Mars" parody in the "The Catherine Tate Show. He was also Sam in the BBC comedy "Pulling", and plays Gary in Miranda Hart's BBC2 comedy "Miranda".  Other notable roles include Justyn in Channel 4's "No Angels" and Thomas Milligan in the series three finale of British science-fiction television programme "Doctor Who". He also starred in the ITV comedy drama "Monday Monday" during July and August 2009 alongside Fay Ripley.
-                    {"\n"}{"\n"}
-                    Ellis is married to actress Tamzin Outhwaite. The family moved to England and Ellis attended High Storrs School in Sheffield and was a French Horn player in the City of Sheffield Youth Orchestra. He was also a huge Sheffield Wednesday fan, but now supports Arsenal.
+                    {this.state.result.biography}
                 </Text>
-                <View style={styles.distribDetail}>
-                    <Text style={{fontSize: 23,fontFamily: "Staatliches-Regular",color:'#fff',marginLeft:20,marginTop:20}}>Filmographie</Text>
+                {/* <View style={styles.distribDetail}>
+                    <Text style={{fontSize: 23,color:'#fff',marginLeft:20,marginTop:20}}>Filmographie</Text>
                     <MoviesCard/>
-                </View>
+                </View> */}
             </>
             }
         </ScrollView>
@@ -102,7 +130,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         backgroundColor:'#27ae60',
         paddingHorizontal: 6,
-        paddingVertical:8,
+        paddingVertical:12,
         borderRadius: 10,
         marginRight: 60,
         position:'relative',
@@ -112,27 +140,28 @@ const styles = StyleSheet.create({
     headerTxtDetail:{
         alignSelf:'center',
         fontSize: 28,
-        fontFamily: "Staatliches-Regular",
         marginTop:15,
+        textAlign:'center',
+        width: '90%'
     },
     introTxtDetail:{
         marginTop:15,
         alignSelf:'center',
         fontSize: 15,
         marginHorizontal: 20,
+        paddingBottom: 40,
     },
     creaTxtDetail:{
         marginTop:15,
         fontSize: 15,
-        fontFamily: "Staatliches-Regular",
         marginHorizontal: 20,
         color:'#aaa',
     },
     genreDetail:{
-        fontFamily:'Staatliches-Regular',
+        overflow:'hidden',
         fontSize: 15,
         backgroundColor:'#aa67eb',
-        borderRadius: 50,
+        borderRadius: 10,
         color:'#fff',
         paddingHorizontal: 7,
         paddingVertical: 1,

@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 3,
     },
     title:{
-        fontFamily: "Staatliches-Regular",
         fontSize: 18,
     }
 })

@@ -6,13 +6,18 @@ import testactorBig from './assets/Images/testactorBig.jpg'
 
 export default class ActorCard extends Component {
   render() {
+    const imageUrl = 'https://image.tmdb.org/t/p/w500'+this.props.url
+
+    let birth = this.props.birth
+
+    let birthTab = birth.split('-')
     return (
-        <TouchableOpacity onPress={() => this.props.inforRoute('actor', 1)} activeOpacity={0.8} style={styles.cardBox}>
-        <Image style={{width: 280,height:350,borderTopRightRadius:15,borderTopLeftRadius:15,}} source={testactorBig}/>
+        <TouchableOpacity onPress={() => this.props.inforRoute('actor', this.props.id)} activeOpacity={0.8} style={styles.cardBox}>
+        <Image style={{width: 280,height:350,borderTopRightRadius:15,borderTopLeftRadius:15,}} source={{uri: imageUrl}}/>
         <View style={styles.cardInfosBox}>
             <View style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-                <Text style={styles.txtCard}>Tom Ellis</Text>
-                <Text style={styles.subtxtCard}>Lucifer, Flash, Les Griffin</Text>
+                <Text style={styles.txtCard}>{this.props.name}</Text>
+                <Text style={styles.subtxtCard}>{birthTab[2] +'/'+ birthTab[1] +'/'+ birthTab[0]}</Text>
             </View>
         </View>
       </TouchableOpacity>
@@ -51,7 +56,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     txtCard:{
-        fontFamily:'Staatliches-Regular',
         fontSize: 23,
     },
     subtxtCard:{

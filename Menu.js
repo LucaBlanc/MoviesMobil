@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   logo: {
-    fontFamily: "Staatliches-Regular",
     fontSize: 35,
     color: "#aa67eb",
   },
@@ -146,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'space-between',
     width: '100%',
-    marginTop: 10,
+    marginTop: Platform.OS === 'ios' ? 50 : 10,
     marginBottom: 50
   },
   menuBox:{
@@ -178,23 +177,21 @@ const styles = StyleSheet.create({
     marginRight: 15,
     marginBottom:20,
     color: '#fff',
-    fontFamily: "Staatliches-Regular",
     paddingHorizontal: 10,
   },
   menuTxtSelected:{
     fontSize:28,
     marginRight: 15,
     marginBottom:20,
-    fontFamily: "Staatliches-Regular",
     backgroundColor: '#fff',
     paddingHorizontal: 10,
-    borderRadius: 50,
-    color:'#aa67eb'
+    borderRadius: 17,
+    color:'#aa67eb',
+    overflow:"hidden"
   },
   menuTxtHeader:{
     fontSize:30,
     color: '#fff',
-    fontFamily: "Staatliches-Regular",
     marginLeft: 35
   },
   footerBurgerMenu:{
@@ -206,13 +203,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   footerTxt:{
-    fontFamily: "Staatliches-Regular",
     fontSize: 25,
     color:'#fff',
     marginBottom: -5
   },
   footerVers:{
-    fontFamily: "Staatliches-Regular",
     fontSize: 15,
     color:'#fff'
   },

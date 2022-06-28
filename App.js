@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, StatusBar, LogBox} from 'react-native';
 import Films from './Films';
 import Login from './Login';
 import Series from './Series'
@@ -7,6 +7,8 @@ import Series from './Series'
 import {getNavbarBottomSize, getScreenHeight} from './screenSize';
 import Detail from './Detail';
 import Acteurs from './Acteurs';
+
+LogBox.ignoreAllLogs();
 
 export class App extends Component {
   constructor(props) {
@@ -74,7 +76,9 @@ export class App extends Component {
 const styles = StyleSheet.create({
   body: {
     backgroundColor: '#fff',
-    height: getScreenHeight()-getNavbarBottomSize(),
+    borderTopColor: '#aa67eb',
+    borderTopWidth: Platform.OS === 'ios' ? 50 : 0,
+    height: Platform.OS === 'ios' ? getScreenHeight() : getScreenHeight()-getNavbarBottomSize(),
     display:'flex',
     alignItems:'center'
   },

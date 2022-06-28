@@ -1,20 +1,26 @@
 import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
-import testimg from './assets/Images/testimg.jpg'
 
 export default class Card extends Component {
   render() {
+    const imageUrl = 'https://image.tmdb.org/t/p/w500'+this.props.imgurl
+
+    let date = this.props.date
+
+    let dateTab = date.split('-')
+
     return (
-      <TouchableOpacity onPress={() => this.props.inforRoute('movie', 1)} activeOpacity={0.8} style={styles.cardBox}>
-        <Image style={{width: 280,height:420,borderTopRightRadius:15,borderTopLeftRadius:15}} source={testimg}/>
-        <Text style={styles.txtDateCard}>13 dec. 2021</Text>
+      <TouchableOpacity onPress={() => this.props.inforRoute('movie', this.props.id)} activeOpacity={0.8} style={styles.cardBox}>
+        <Image style={{width: 280,height:420,borderTopRightRadius:15,borderTopLeftRadius:15,resizeMode:'cover'}} source={{uri: imageUrl}}/>
+        <View style={styles.dateBox}>
+          <Text style={styles.txtDateCard}>{dateTab[2] +'/'+ dateTab[1] +'/'+ dateTab[0]}</Text>
+        </View>
         <View style={styles.cardInfosBox}>
             <View style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-                <Text style={styles.txtCard}>Lucifer</Text>
-                <Text style={styles.txtGenreCard}>Action</Text>
+                <Text style={styles.txtCard}>{this.props.title}</Text>
             </View>
             <View style={styles.noteBox}>
-                <Text style={{fontFamily:'Staatliches-Regular',fontSize:25,color:'#fff'}}>85%</Text>
+                <Text style={{fontSize:25,color:'#fff'}}>{this.props.note*10}%</Text>
             </View>
         </View>
       </TouchableOpacity>
@@ -33,6 +39,7 @@ const styles = StyleSheet.create({
         display:'flex',
         alignContent:'center',
         marginBottom: 50,
+        width: 282,
 
         shadowColor: "#000",
         shadowOffset: {
@@ -57,16 +64,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:'#27ae60',
-        paddingHorizontal: 8,
-        paddingVertical:10,
+        paddingHorizontal: 6,
+        paddingVertical:14,
         borderRadius: 10,
     },
     txtCard:{
-        fontFamily:'Staatliches-Regular',
         fontSize: 23,
+        width:170,
     },
     txtGenreCard:{
-        fontFamily:'Staatliches-Regular',
         fontSize: 15,
         backgroundColor:'#aa67eb',
         borderRadius: 50,
@@ -75,16 +81,17 @@ const styles = StyleSheet.create({
         paddingVertical: 1,
     },
     txtDateCard:{
-        fontFamily:'Staatliches-Regular',
         fontSize: 22,
         backgroundColor:'#aa67eb',
-        borderRadius: 50,
+        borderRadius: 14,
+        right: 5,
         color:'#fff',
         paddingHorizontal: 10,
         paddingVertical: 1,
         position: 'relative',
         bottom: 20,
         alignSelf:'flex-end',
-        marginBottom: -15
-    }
+        marginBottom: -15,
+        overflow:"hidden"
+    },
 })
